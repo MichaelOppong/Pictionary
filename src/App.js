@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useRef } from 'react';
 import './App.css';
+import Canvas from './Canvas';
+import PlayerOne from './PlayerOne';
+import PlayerTwo from './PlayerTwo';
 
 function App() {
+  const [turn, setTurn] = useState(1);
+  const [animal, setAnimal] = useState('');
+  let refCanvas = useRef(null);  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Code Nation Presents: Pictionary</h1>
+      {turn === 1 && 
+        <PlayerOne
+          setTurn={setTurn}
+          setAnimal={setAnimal}
+          animal={animal}
+        />}
+      <Canvas 
+        ref={refCanvas}
+      />
+      {turn === 2 && 
+        <PlayerTwo
+          setTurn={setTurn}
+          setAnimal={setAnimal}
+          animal={animal}
+          refCanvas={refCanvas}
+        />}
     </div>
   );
 }
