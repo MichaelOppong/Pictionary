@@ -29,6 +29,13 @@ function Guessing(props) {
         props.dispatch({
             type: 'setRound'
         })
+        props.dispatch({
+            type: 'setPhase',
+            payload: 'drawing'
+        })
+        props.dispatch({
+            type: 'setDrawingPlayer'
+        })
         let canvas = props.refCanvas.current;
         canvas.clear();
     }

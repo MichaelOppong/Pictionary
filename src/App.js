@@ -12,7 +12,6 @@ const initialState = {
     playerTwo: 0
   },
   drawingPlayer: 1,
-  guessingPlayer: 2,
   animal: "" 
 
 };
@@ -20,11 +19,25 @@ const initialState = {
 function reducer(state, action) {
   switch (action.type) {
     case 'setPhase':
-      return {phase: action.payload};
+      return {
+        ...state,
+        phase: action.payload
+      };
     case 'setAnimal':
-      return {animal: action.payload};
+      return {
+        ...state,
+        animal: action.payload
+      };
     case 'setRound':
-      return {round: state.round + 1};
+      return {
+        ...state,
+        round: state.round + 1
+      };
+    case 'setDrawingPlayer':
+      return {
+        ...state,
+        drawingPlayer: state.drawingPlayer === 1 ? 2 : 1
+      };
     default:
       throw new Error();
   }
