@@ -3,11 +3,21 @@ import Button from './Button';
 import animals from './animals.json';
 
 
-function PlayerOne(props) {
+function Drawing(props) {
    function selectAnimal(){
        let animalIndex = Math.ceil(Math.random() * animals.length);
        let newAnimal = animals[animalIndex];
-       props.setAnimal(newAnimal)
+       props.dispatch({
+           type: 'setAnimal',
+           payload: newAnimal
+       });
+    }
+
+    function startGuessing(){
+        props.dispatch({
+            type: 'setPhase',
+            payload: 'guessing'
+        });
     }
     return(
         <div>
@@ -17,7 +27,7 @@ function PlayerOne(props) {
                 text='Choose an Animal'
             />
             <Button
-                handleClick={() => { props.setTurn(2); }}
+                handleClick={startGuessing}
                 text='Done drawing!'
             />
         </div>
@@ -25,4 +35,4 @@ function PlayerOne(props) {
 
 }
 
-export default PlayerOne;
+export default Drawing;
