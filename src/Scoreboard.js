@@ -2,14 +2,16 @@ import React from 'react';
 
 function Scoreboard(props){
     return(
-        <div>
+        <div className='scoreboard'>
             <div>
-                <p>Round: {props.round}/7</p>
-                <p>Drawing Player: Player {props.drawingPlayer}</p>
+                <p><strong>Round:</strong> {props.round}/7</p>
+            </div>
+            <div>
+                <p><strong>Drawing Player:</strong> Player {props.drawingPlayer}</p>
             </div>
             <div>
                 <div>
-                    <p>Score: {props.score}</p>
+                    <p><strong>Score:</strong> {props.score}</p>
                 </div>
             </div>
 
