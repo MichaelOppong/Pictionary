@@ -9,8 +9,7 @@ function Scoreboard(props){
             </div>
             <div>
                 <div>
-                    <p>Player 1: {props.score.playerOne}</p>
-                    <p>Player 2: {props.score.playerTwo}</p>
+                    <p>Score: {props.score}</p>
                 </div>
             </div>
 

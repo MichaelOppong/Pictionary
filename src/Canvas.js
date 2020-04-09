@@ -55,6 +55,9 @@ class Canvas extends Component {
                 flag: true,
                 dot_flag: true,
             }, () => {
+                if (this.props.animal === '' || this.props.phase !== 'drawing') {
+                    return;
+                }
                 this.ctx.beginPath();
                 this.ctx.fillStyle = this.state.fillStyle;
                 this.ctx.fillRect(this.state.currX, this.state.currY, 2, 2);
@@ -84,6 +87,9 @@ class Canvas extends Component {
         }
     }
     draw() {
+        if (this.props.phase === 'guessing') {
+            return;
+        }
         this.ctx.beginPath();
         this.ctx.moveTo(this.state.prevX, this.state.prevY);
         this.ctx.lineTo(this.state.currX, this.state.currY);
@@ -91,6 +97,9 @@ class Canvas extends Component {
         this.ctx.lineWidth = this.state.lineWidth;
         this.ctx.stroke();
         this.ctx.closePath();
+        if (this.props.animal === '') {
+            this.clear();
+        }
     }
     clear() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);

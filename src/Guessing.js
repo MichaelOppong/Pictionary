@@ -16,10 +16,12 @@ function Guessing(props) {
     function checkAnswer(){
         if (props.animal === guess) {
            alert("Your answer is " +guess+ " and it is correct.") ;
+           props.setScore();
         } else{
             alert("Your answer is " +guess+ " and it is wrong. The correct answer is "+props.animal);
         }
     }
+
 
    function handleNextGameButtonClick() {
         props.dispatch({

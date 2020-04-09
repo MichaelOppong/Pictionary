@@ -8,10 +8,7 @@ import Scoreboard from './Scoreboard';
 const initialState = {
   round: 1,
   phase: "drawing",
-  score: {
-    playerOne: 0,
-    playerTwo: 0
-  },
+  score: 0,
   drawingPlayer: 1,
   animal: "" 
 
@@ -39,14 +36,29 @@ function reducer(state, action) {
         ...state,
         drawingPlayer: state.drawingPlayer === 1 ? 2 : 1
       };
+    case 'setScore':
+        return {
+          ...state,
+          score: state.score + 1
+        }  
     default:
       throw new Error();
-  }
+  };
 }
+
+
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
   let refCanvas = useRef(null);  
+  
+  function setScore(){
+    dispatch({
+      type: 'setScore'
+    })
+  
+  }
+
   return (
     <div className="App">
       <h1>Code Nation Presents: Pictionary</h1>
@@ -57,12 +69,16 @@ function App() {
         />}
       <Canvas 
         ref={refCanvas}
+        animal={state.animal}
+        phase={state.phase}
       />
       {state.phase === "guessing" && 
         <Guessing
           dispatch={dispatch}
           animal={state.animal}
           refCanvas={refCanvas}
+          score={state.score}
+          setScore={setScore} 
         />}
         <Scoreboard 
           score={state.score}
