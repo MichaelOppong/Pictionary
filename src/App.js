@@ -3,6 +3,7 @@ import './App.css';
 import Canvas from './Canvas';
 import Drawing from './Drawing';
 import Guessing from './Guessing';
+import Scoreboard from './Scoreboard';
 
 const initialState = {
   round: 1,
@@ -63,6 +64,11 @@ function App() {
           animal={state.animal}
           refCanvas={refCanvas}
         />}
+        <Scoreboard 
+          score={state.score}
+          round={state.round}
+          drawingPlayer={state.drawingPlayer}
+        />
     </div>
   );
 }
