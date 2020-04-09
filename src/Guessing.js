@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import NextGameButton from './Button';
 
-function PlayerTwo(props) {
+function Guessing(props) {
     const [guess,setGuess] = useState('');
     function handleChange(e) {
         e.preventDefault();
@@ -22,8 +22,20 @@ function PlayerTwo(props) {
     }
 
    function handleNextGameButtonClick() {
-        props.setTurn(1); 
-        props.setAnimal('');
+        props.dispatch({
+            type: 'setAnimal',
+            payload: ''
+        })
+        props.dispatch({
+            type: 'setRound'
+        })
+        props.dispatch({
+            type: 'setPhase',
+            payload: 'drawing'
+        })
+        props.dispatch({
+            type: 'setDrawingPlayer'
+        })
         let canvas = props.refCanvas.current;
         canvas.clear();
     }
@@ -53,4 +65,4 @@ function PlayerTwo(props) {
 
 
 
-export default PlayerTwo;
+export default Guessing;
